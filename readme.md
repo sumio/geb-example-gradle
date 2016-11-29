@@ -1,32 +1,32 @@
-# Example Geb and Gradle Project
+# Example Geb, Appium and Gradle Project
 
-[![Build Status][build_status]](https://snap-ci.com/geb/geb-example-gradle/branch/master)
+## 概要
 
-## Description
+[Example Geb and Gradle Project](https://github.com/geb/geb-example-gradle)
+を、[Appium](https://github.com/appium/appium/)を使ってAndroid上のChromeブラウザでも動作するようにしたものです。
 
-This is an example of incorporating Geb into a Gradle build. It shows the use of Spock and JUnit 4 tests.
+Appium 1.6.1を立ち上げた状態で、以下のコマンドを実行してください。
 
-The build is setup to work with Firefox, Chrome and PhantomJS. Have a look at the `build.gradle` and the `src/test/resources/GebConfig.groovy` files.
+    ./gradlew appiumTest
 
-## Usage
+## 動作確認環境 
 
-The following commands will launch the tests with the individual browsers:
-
-    ./gradlew chromeTest
-    ./gradlew firefoxTest
-    ./gradlew phantomJsTest
-
-To run with all, you can run:
-
-    ./gradlew test
-
-Replace `./gradlew` with `gradlew.bat` in the above examples if you're on Windows.
-
-## Questions and issues
-
-Please ask questions on [Geb user mailing list][mailing_list] and raise issues in [Geb issue tracker][issue_tracker].
+Appium 1.6.1とChrome 54.0.2840.85の組み合わせで動作確認しています。
 
 
-[build_status]: https://snap-ci.com/geb/geb-example-gradle/branch/master/build_image "Build Status"
-[mailing_list]: https://groups.google.com/forum/#!forum/geb-user
-[issue_tracker]: https://github.com/geb/issues/issues
+## オリジナルからの修正内容
+
+### `build.gradle`
+
+- `drivers`配列に`"appium"`を追加し、`appiumTest`タスクを利用できるようにしました。
+  `appiumTest`タスクを実行すると、`geb.env`プロパティに`appium`が設定された状態でテストが実行されます。
+- Appium Java Clientを依存関係に追加しました。
+
+### `src/test/resources/GebConfig.groovy`
+
+`GebConfig.groovy`の`appium`ブロックを追加し、その中で、WebDriver実装として`AndroidDriver`を返すようにしています。
+
+## License
+
+Modification Copyright 2016 TOYAMA Sumio <jun.nama@gmail.com>  
+Licensed under the Apache License, Version 2.0.

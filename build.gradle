@@ -2,7 +2,7 @@ import org.apache.tools.ant.taskdefs.condition.Os
 
 ext {
     // The drivers we want to use
-    drivers = ["firefox", "chrome", "phantomJs"]
+    drivers = ["firefox", "chrome", "phantomJs", "appium"]
 
     ext {
         groovyVersion = '2.4.5'
@@ -10,6 +10,7 @@ ext {
         seleniumVersion = '2.51.0'
         chromeDriverVersion = '2.24'
         phantomJsVersion = '1.9.7'
+        appiumClientVersion = '4.1.2'
     }
 }
 
@@ -40,6 +41,7 @@ dependencies {
         // phantomjs driver pulls in a different selenium version
         transitive = false
     }
+    testCompile "io.appium:java-client:4.1.2"
 }
 
 drivers.each { driver ->
